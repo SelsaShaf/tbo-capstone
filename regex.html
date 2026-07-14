@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul Regex - Capstone TBO</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="brand">Capstone TBO</span>
+    <nav>
+      <a href="index.html">Tentang</a>
+      <a href="fsa.html">FSA</a>
+      <a href="regex.html" class="active">Regex</a>
+      <a href="pda.html">PDA / CFG</a>
+      <a href="chomsky.html">Chomsky</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <span class="eyebrow">Modul 2</span>
+  <h1>Regular Expression</h1>
+  <p class="subtitle">Konversi pola RE ke NFA (Thompson's Construction), uji string, dan lihat grammar reguler setara</p>
+
+  <details class="info-panel">
+    <summary>Apa itu Regular Expression?</summary>
+    <div class="info-body">
+      <p>Regular Expression (RE) adalah notasi ringkas untuk mendeskripsikan pola sebuah string. Alih-alih menuliskan mesin state satu per satu, pola bisa ditulis sebagai satu ekspresi singkat.</p>
+      <p>Operator dasar yang didukung modul ini:</p>
+      <ul>
+        <li><strong>|</strong> (union) - "atau", contoh <code>a|b</code> berarti simbol a atau b</li>
+        <li><strong>*</strong> (kleene star) - pengulangan nol kali atau lebih, contoh <code>a*</code> berarti kosong, a, aa, aaa, dst</li>
+        <li><strong>()</strong> (grouping) - mengelompokkan sub-pola, contoh <code>(ab)*</code></li>
+      </ul>
+      <p>Setiap pola RE pada modul ini dikonversi menjadi NFA yang setara menggunakan metode <strong>Thompson's Construction</strong>, lalu NFA tersebut yang dipakai untuk menguji apakah suatu string cocok dengan pola.</p>
+    </div>
+  </details>
+
+  <details class="info-panel">
+    <summary>Cara menggunakan modul ini</summary>
+    <div class="info-body">
+      <ol>
+        <li>Tulis pola regex pada kolom <strong>"Pola regex"</strong>.</li>
+        <li>Tulis teks yang ingin diuji pada kolom <strong>"Teks yang diuji"</strong>.</li>
+        <li>Klik <strong>"Konversi dan uji"</strong>.</li>
+        <li>Hasil kecocokan akan langsung terlihat, diikuti definisi formal NFA hasil konversi, tabel transisi, diagram visual, dan aturan produksi grammar reguler yang setara.</li>
+      </ol>
+    </div>
+  </details>
+
+  <div class="card">
+    <h2>Pola dan teks uji</h2>
+    <label>Pola regex</label>
+    <input type="text" id="pattern" value="(a|b)*abb">
+    <p class="hint">Simbol satu karakter, operator didukung: | (union), * (kleene star), () (grouping), konkatenasi otomatis. Contoh: (a|b)*abb</p>
+    <label>Teks yang diuji</label>
+    <input type="text" id="testText" value="aababb">
+    <p class="hint">Teks hanya boleh berisi simbol satu karakter yang dipakai di pola regex Anda.</p>
+    <button onclick="runRegex()">Konversi dan uji</button>
+    <button class="secondary" onclick="loadExampleRegex()">Muat contoh lain</button>
+  </div>
+
+  <div id="resultBox"></div>
+
+  <div class="card" id="formalCard" style="display:none">
+    <h2>Definisi formal hasil konversi NFA</h2>
+    <div class="formal-grid" id="formalGrid"></div>
+  </div>
+
+  <div class="card" id="tableCard" style="display:none">
+    <h2>Tabel transisi NFA</h2>
+    <div id="tableOutput"></div>
+  </div>
+
+  <div class="card" id="diagramCard" style="display:none">
+    <h2>Visualisasi state diagram NFA</h2>
+    <div class="diagram-box" id="diagramOutput"></div>
+  </div>
+
+  <div class="card" id="grammarCard" style="display:none">
+    <h2>Aturan produksi grammar reguler setara</h2>
+    <p class="hint" style="margin-top:0">Diturunkan langsung dari struktur NFA: tiap state adalah non-terminal</p>
+    <div class="grammar-list" id="grammarOutput"></div>
+  </div>
+</main>
+
+<footer>Regular Expression</footer>
+
+<script src="js/diagram.js"></script>
+<script src="js/regex.js"></script>
+</body>
+</html>

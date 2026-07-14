@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul PDA / CFG - Capstone TBO</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="brand">Capstone TBO</span>
+    <nav>
+      <a href="index.html">Tentang</a>
+      <a href="fsa.html">FSA</a>
+      <a href="regex.html">Regex</a>
+      <a href="pda.html" class="active">PDA / CFG</a>
+      <a href="chomsky.html">Chomsky</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <span class="eyebrow">Modul 3</span>
+  <h1>Pushdown Automata dan CFG</h1>
+  <p class="subtitle">Definisikan tata bahasa bebas konteks, lalu uji sebuah string</p>
+
+  <details class="info-panel">
+    <summary>Apa itu PDA dan Context-Free Grammar?</summary>
+    <div class="info-body">
+      <p><strong>Context-Free Grammar (CFG)</strong> adalah kumpulan aturan produksi yang mendefinisikan bagaimana sebuah string boleh dibentuk, dimulai dari satu simbol awal yang terus "diturunkan" hingga menjadi rangkaian simbol terminal.</p>
+      <p><strong>Pushdown Automata (PDA)</strong> adalah automata yang dilengkapi <strong>stack</strong> (tumpukan memori), sehingga mampu mengenali bahasa yang lebih rumit dari FSA biasa - termasuk pola bersarang seperti tanda kurung yang harus seimbang.</p>
+      <p>Proses menurunkan string dari simbol awal disebut <strong>derivasi</strong>. Jika derivasi dilakukan dengan selalu mengganti simbol non-terminal paling kiri lebih dulu, disebut <strong>derivasi leftmost</strong>. Hasil dari seluruh proses derivasi dapat digambarkan sebagai <strong>pohon penurunan (parse tree)</strong>.</p>
+    </div>
+  </details>
+
+  <details class="info-panel">
+    <summary>Cara menggunakan modul ini</summary>
+    <div class="info-body">
+      <ol>
+        <li>Tulis aturan produksi grammar, satu baris satu simbol, format <code>A-&gt;produksi1|produksi2</code>.</li>
+        <li>Tentukan simbol awal (biasanya <code>S</code>).</li>
+        <li>Ketik string yang ingin diuji.</li>
+        <li>Klik <strong>"Jalankan"</strong>.</li>
+        <li>Jika diterima, akan muncul proses derivasi leftmost, visualisasi stack, dan pohon penurunan secara grafis.</li>
+      </ol>
+    </div>
+  </details>
+
+  <div class="card">
+    <h2>Aturan produksi grammar</h2>
+    <label>Aturan (satu baris satu simbol, format: A-&gt;produksi1|produksi2)</label>
+    <textarea id="grammarInput">S->aSb|ab</textarea>
+    <p class="hint">Huruf besar = non-terminal, huruf kecil/angka = terminal, satu simbol satu karakter. Gunakan ε untuk produksi kosong.</p>
+    <label>Simbol awal (S)</label>
+    <input type="text" id="startSymbol" value="S">
+    <label>String yang diuji</label>
+    <input type="text" id="pdaTestString" value="aabb">
+    <button onclick="runPDA()">Jalankan</button>
+    <button class="secondary" onclick="loadExamplePDA()">Muat contoh lain</button>
+  </div>
+
+  <div id="pdaResultBox"></div>
+
+  <div class="card" id="derivationCard" style="display:none">
+    <h2>Derivasi leftmost</h2>
+    <div id="derivationOutput" style="font-family:var(--font-mono);font-size:13px;line-height:1.9"></div>
+  </div>
+
+  <div class="card" id="stackCard" style="display:none">
+    <h2>Visualisasi stack PDA (tahap awal parsing)</h2>
+    <p class="hint" style="margin-top:0">Menunjukkan isi stack saat menurunkan simbol awal secara leftmost</p>
+    <div class="stack-view" id="stackOutput"></div>
+  </div>
+
+  <div class="card" id="treeCard" style="display:none">
+    <h2>Pohon penurunan</h2>
+    <div class="diagram-box" id="treeOutput"></div>
+  </div>
+</main>
+
+<footer>PDA dan Context-Free Grammar</footer>
+
+<script src="js/diagram.js"></script>
+<script src="js/pda.js"></script>
+</body>
+</html>

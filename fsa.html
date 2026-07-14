@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul FSA - Capstone TBO</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="brand">Capstone TBO</span>
+    <nav>
+      <a href="index.html">Tentang</a>
+      <a href="fsa.html" class="active">FSA</a>
+      <a href="regex.html">Regex</a>
+      <a href="pda.html">PDA / CFG</a>
+      <a href="chomsky.html">Chomsky</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <span class="eyebrow">Modul 1</span>
+  <h1>Finite State Automata</h1>
+  <p class="subtitle">Definisikan DFA/NFA lewat tabel transisi M = (Q, Σ, δ, S, F), lalu jalankan simulasi string</p>
+
+  <details class="info-panel">
+    <summary>Apa itu Finite State Automata?</summary>
+    <div class="info-body">
+      <p>Finite State Automata (FSA) adalah model komputasi sederhana yang terdiri dari sejumlah <strong>state</strong> (kondisi) dan aturan perpindahan (<strong>transisi</strong>) antar state berdasarkan simbol yang dibaca satu per satu.</p>
+      <p><strong>DFA (Deterministic Finite Automata)</strong> - setiap state hanya punya tepat satu tujuan untuk setiap simbol input, sehingga jalannya pasti dan tidak bercabang.</p>
+      <p><strong>NFA (Non-deterministic Finite Automata)</strong> - satu state boleh punya lebih dari satu kemungkinan tujuan untuk simbol yang sama, sehingga mesin bisa "berada di beberapa state sekaligus".</p>
+      <p>Sebuah string dikatakan <strong>diterima</strong> jika, setelah seluruh simbolnya dibaca habis, mesin berhenti di salah satu <strong>state akhir (F)</strong>.</p>
+    </div>
+  </details>
+
+  <details class="info-panel">
+    <summary>Cara menggunakan modul ini</summary>
+    <div class="info-body">
+      <ol>
+        <li>Isi <strong>alfabet</strong> (simbol yang dipakai, misal <code>0,1</code>) dan daftar <strong>state</strong> (misal <code>q0,q1,q2</code>).</li>
+        <li>Klik <strong>"Buat tabel transisi"</strong> untuk memunculkan tabel pengisian.</li>
+        <li>Pilih <strong>state awal</strong>, lalu centang <strong>state akhir</strong> (boleh lebih dari satu).</li>
+        <li>Isi tabel: untuk setiap state dan setiap simbol, tulis mau pindah ke state mana. Untuk NFA, boleh tulis lebih dari satu tujuan dipisah koma.</li>
+        <li>Ketik string yang ingin diuji, lalu klik <strong>"Jalankan simulasi"</strong>.</li>
+        <li>Hasil, jejak transisi, definisi formal, dan diagram visual akan muncul di bawahnya.</li>
+      </ol>
+    </div>
+  </details>
+
+  <div class="card">
+    <h2>1. Alfabet dan himpunan state</h2>
+    <label>Alfabet (Σ) - pisahkan dengan koma</label>
+    <input type="text" id="alphabetInput" value="0,1">
+    <label>Himpunan state (Q) - pisahkan dengan koma</label>
+    <input type="text" id="statesInput" value="q0,q1,q2">
+    <button onclick="generateTable()">Buat tabel transisi</button>
+    <button class="secondary" onclick="loadExample()">Muat contoh lain</button>
+  </div>
+
+  <div class="card" id="tableCard" style="display:none">
+    <h2>2. Tabel transisi (δ)</h2>
+    <label>State awal (S)</label>
+    <select id="startStateSelect"></select>
+    <label style="margin-top:16px">State akhir / final (F) - boleh lebih dari satu</label>
+    <div class="final-checks" id="finalChecks"></div>
+    <label>Isi tujuan tiap state. Untuk NFA, tulis lebih dari satu tujuan dipisah koma. Kosongkan bila tidak ada transisi.</label>
+    <div id="transitionTableWrap"></div>
+    <label style="margin-top:16px">String yang diuji</label>
+    <input type="text" id="testString" value="1011">
+    <p class="hint">String hanya boleh berisi simbol yang ada di alfabet (contoh: 0 dan 1). String kosong akan diterima jika state awal juga ditandai sebagai state akhir.</p>
+    <button onclick="runFSA()">Jalankan simulasi</button>
+  </div>
+
+  <div id="resultBox"></div>
+
+  <div class="card" id="formalCard" style="display:none">
+    <h2>Definisi formal M = (Q, Σ, δ, S, F)</h2>
+    <div class="formal-grid" id="formalGrid"></div>
+  </div>
+
+  <div class="card" id="traceCard" style="display:none">
+    <h2>Jejak transisi</h2>
+    <div class="chain" id="traceOutput"></div>
+  </div>
+
+  <div class="card" id="diagramCard" style="display:none">
+    <h2>Visualisasi state diagram</h2>
+    <div class="diagram-box" id="diagramOutput"></div>
+  </div>
+</main>
+
+<footer>FSA - mendukung DFA dan NFA</footer>
+
+<script src="js/diagram.js"></script>
+<script src="js/fsa.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modul Chomsky / CNF - Capstone TBO</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="brand">Capstone TBO</span>
+    <nav>
+      <a href="index.html">Tentang</a>
+      <a href="fsa.html">FSA</a>
+      <a href="regex.html">Regex</a>
+      <a href="pda.html">PDA / CFG</a>
+      <a href="chomsky.html" class="active">Chomsky</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <span class="eyebrow">Modul 4</span>
+  <h1>Hierarki Chomsky dan Bentuk Normal Chomsky</h1>
+  <p class="subtitle">Klasifikasikan grammar dan konversi ke CNF secara bertahap</p>
+
+  <details class="info-panel">
+    <summary>Apa itu Hierarki Chomsky dan CNF?</summary>
+    <div class="info-body">
+      <p><strong>Hierarki Chomsky</strong> membagi bahasa formal ke dalam empat tingkatan berdasarkan kompleksitas aturan produksinya - Tipe 0 (paling umum/tak terbatas) hingga Tipe 3 (paling sederhana/reguler). Semakin kecil nomor tipenya, semakin longgar aturannya; semakin besar nomornya, semakin ketat batasannya.</p>
+      <p><strong>Chomsky Normal Form (CNF)</strong> adalah bentuk standar dari CFG di mana setiap aturan produksi hanya boleh berbentuk <code>A → BC</code> (dua simbol non-terminal) atau <code>A → a</code> (satu simbol terminal).</p>
+      <p>Tujuan mengonversi grammar ke CNF adalah menyederhanakan strukturnya agar lebih mudah diproses oleh algoritma parsing, tanpa mengubah bahasa yang dihasilkan.</p>
+    </div>
+  </details>
+
+  <details class="info-panel">
+    <summary>Cara menggunakan modul ini</summary>
+    <div class="info-body">
+      <ol>
+        <li>Tulis aturan produksi grammar, satu baris satu simbol, format <code>A-&gt;produksi1|produksi2</code>.</li>
+        <li>Tentukan simbol awal (biasanya <code>S</code>).</li>
+        <li>Klik <strong>"Analisis"</strong>.</li>
+        <li>Sistem akan menampilkan klasifikasi tipe grammar, lalu tahapan konversi menuju CNF satu per satu: eliminasi produksi ε, eliminasi produksi unit, pemisahan terminal, hingga hasil akhir CNF.</li>
+      </ol>
+    </div>
+  </details>
+  <div class="card">
+    <h2>Aturan produksi grammar</h2>
+    <label>Aturan (satu baris satu simbol, format: A-&gt;produksi1|produksi2)</label>
+    <textarea id="cnfGrammarInput">S->aAb
+A->aA|ε</textarea>
+    <p class="hint">Huruf besar = non-terminal, huruf kecil = terminal, satu simbol satu karakter. Gunakan ε untuk produksi kosong.</p>
+    <label>Simbol awal (S)</label>
+    <input type="text" id="cnfStartSymbol" value="S">
+    <button onclick="runChomsky()">Analisis</button>
+    <button class="secondary" onclick="loadExampleChomsky()">Muat contoh lain</button>
+  </div>
+
+  <div id="classifyResultBox"></div>
+
+  <div class="card" id="cnfStepsCard" style="display:none">
+    <h2>Tahapan konversi ke CNF</h2>
+    <div id="cnfStepsOutput"></div>
+  </div>
+</main>
+
+<footer>Hierarki Chomsky dan Chomsky Normal Form</footer>
+
+<script src="js/chomsky.js"></script>
+</body>
+</html>
