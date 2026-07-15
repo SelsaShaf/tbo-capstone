@@ -65,7 +65,7 @@ tbo-capstone/
 ## Cara menjalankan secara lokal
 
 1. Clone repositori ini:
-git clone https://github.com/[username]/tbo-capstone.git
+git clone  https://github.com/SelsaShaf/tbo-capstone.git
 2. Buka folder `src/` di VS Code
 3. Jalankan `index.html` menggunakan ekstensi Live Server, atau buka langsung file tersebut di browser
 
@@ -73,8 +73,8 @@ Tidak memerlukan instalasi dependency apa pun.
 
 ## Live demo
 
-Domain: (isi setelah deploy, contoh: https://[nim].my.id)
+Domain: https://301240041-selsa.my.id/
 
 ## Video demo
 
-YouTube: (isi setelah rekam video)
+YouTube:  https://youtu.be/FEqfJNyqTic
