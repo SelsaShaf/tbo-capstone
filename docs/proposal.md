@@ -1,4 +1,4 @@
-# Proposal Mini — Capstone Project Teori Bahasa dan Otomata
+# Proposal Mini Capstone Project Teori Bahasa dan Otomata
 
 Nama: Selsa Shafana Alfiyani
 NIM: 301240041
