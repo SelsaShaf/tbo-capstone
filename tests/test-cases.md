@@ -18,9 +18,7 @@ Q={q0,q1}, Σ={0,1}, δ(q0,0)=q0, δ(q0,1)=q1, δ(q1,0)=q1, δ(q1,1)=q0, S=q0, F
 | 7 | 10 | Ditolak | Ditolak | Sesuai |
 | 8 | 0000 | Diterima | Diterima | Sesuai |
 | 9 | 1001011 | Diterima | Diterima | Sesuai |
-| 10 | 12a (simbol tidak valid) | Pesan error, bukan diterima/ditolak | Pesan error
-Simbol "2" bukan bagian dari alfabet.
- | Sesuai |
+| 10 | 12a (simbol tidak valid) | Pesan error, bukan diterima/ditolak | Pesan error Simbol "2" bukan bagian dari alfabet| Sesuai |
 
 ## Modul 2: Regular Expression
 
@@ -37,7 +35,7 @@ Pola uji utama: `(a|b)*abb`
 | 17 | (a\|b)*abb | aabba | Tidak cocok | Tidak cocok | Sesuai |
 | 18 | a*b* | aaabb | Cocok | Tidak cocok | Tidak sesuai|
 | 19 | a*b* | bbaa | Tidak cocok | Tidak cocok | Sesuai |
-| 20 | a (pola tidak valid) | apa saja | Pesan error pola tidak valid | Pesan error | Sesuai |
+| 20 | a( (pola tidak valid) | Pesan error | Pesan error | Sesuai |
 
 ## Modul 3: Pushdown Automata dan CFG
 
